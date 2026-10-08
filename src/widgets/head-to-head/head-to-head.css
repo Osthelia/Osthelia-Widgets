@@ -1,0 +1,6 @@
+.h2h { display: flex; flex-direction: column; width: 100%; height: 100%; padding: 12px; }
+.h2h-header { display: flex; justify-content: space-between; gap: 12px; padding: 0 4px 8px; }
+.h2h-team { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.h2h-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; }
+.h2h-chart { flex: 1; min-height: 0; }
+.dot { width: 8px; height: 8px; flex: none; border-radius: 50%; }

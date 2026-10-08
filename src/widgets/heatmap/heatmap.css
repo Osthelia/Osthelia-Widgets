@@ -1,0 +1,6 @@
+/* Square stage that fits the viewport, the canvas overlays the minimap. */
+.heatmap { position: relative; width: min(100%, 100vh); aspect-ratio: 1; margin: auto; overflow: hidden; }
+.heatmap-map { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; user-select: none; pointer-events: none; }
+.heatmap canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+/* Light fixed blur to anti-alias the cell edges (a size relative one grows the hot area past the data). */
+.heatmap canvas { filter: blur(3.5px); }
