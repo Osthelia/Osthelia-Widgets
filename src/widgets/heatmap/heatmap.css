@@ -1,5 +1,7 @@
-/* Square stage that fits the viewport, the canvas overlays the minimap. */
-.heatmap { position: relative; width: min(100%, 100vh); aspect-ratio: 1; margin: auto; overflow: hidden; }
+/* Square stage that fits the room left by the frame (credit line included), the canvas overlays the minimap. */
+.widget-body > .heatmap-stage { flex: 1; container-type: size; display: flex; }
+.heatmap { position: relative; flex: none; width: min(100cqw, 100cqh); aspect-ratio: 1; margin: auto; overflow: hidden; transform: rotate(90deg); }
+.heatmap[data-rotation="def"] { transform: rotate(-90deg); }
 .heatmap-map { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; user-select: none; pointer-events: none; }
 .heatmap canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
 /* Light fixed blur to anti-alias the cell edges (a size relative one grows the hot area past the data). */

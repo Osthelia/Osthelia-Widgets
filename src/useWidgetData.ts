@@ -16,7 +16,7 @@ export type WidgetState<T> = { status: "loading" } | { status: "error"; message:
 const REQUEST_TIMEOUT_MS = 15_000;
 const MIN_REFRESH_SECONDS = 10;
 /** Params handled by this front only, not forwarded to the API (keeps the API cache keys clean). */
-const FRONT_ONLY_PARAMS = ["lang", "credit", "refresh"];
+const FRONT_ONLY_PARAMS = ["lang", "credit", "refresh", "rotation"];
 
 function apiQuery(params: URLSearchParams): string {
   const forwarded = new URLSearchParams(params);

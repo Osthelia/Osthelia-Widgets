@@ -23,14 +23,19 @@ function isData(body: unknown): body is Data {
 
 export function Heatmap() {
   const state = useWidgetData("heatmap", isData);
-  const color = new URLSearchParams(window.location.search).get("color");
+  const params = new URLSearchParams(window.location.search);
+  const color = params.get("color");
+  // "atk" (default) is the "def" orientation turned by 180°.
+  const rotation = params.get("rotation")?.toLowerCase() === "def" ? "def" : "atk";
 
   return (
     <WidgetFrame state={state}>
       {({ map, positions }) => (
-        <div className="heatmap">
-          <img className="heatmap-map" src={map.imageUrl} alt="" />
-          <HeatmapCanvas positions={positions} color={color} label={t("heatmap", { map: map.key })} />
+        <div className="heatmap-stage">
+          <div className="heatmap" data-rotation={rotation}>
+            <img className="heatmap-map" src={map.imageUrl} alt="" />
+            <HeatmapCanvas positions={positions} color={color} label={t("heatmap", { map: map.key })} />
+          </div>
         </div>
       )}
     </WidgetFrame>

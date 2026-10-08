@@ -24,9 +24,10 @@ Extra params handled by this front only:
 
 - `credit=1` shows the small "Widget provided by GC Stats" line (off by default, opt in).
 - `lang=fr` forces the language (browser language otherwise, English as fallback).
+- `rotation=atk` or `rotation=def` (heatmap only) turns the map to the attackers or defenders point of view (`atk` by default).
 - `refresh=30` re-fetches the data every 30 seconds (min 10, off by default; a failed refresh keeps the last data).
 
-`credit`, `lang` and `refresh` are not forwarded to the API.
+`credit`, `lang`, `refresh` and `rotation` are not forwarded to the API.
 
 ## Run
 
