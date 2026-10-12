@@ -15,4 +15,5 @@ import { lazy, type ComponentType } from "react";
 export const WIDGETS: Record<string, ComponentType> = {
   "/head-to-head": lazy(() => import("./head-to-head/HeadToHead").then((m) => ({ default: m.HeadToHead }))),
   "/heatmap": lazy(() => import("./heatmap/Heatmap").then((m) => ({ default: m.Heatmap }))),
+  "/veto": lazy(() => import("./veto/Veto").then((m) => ({ default: m.Veto }))),
 };

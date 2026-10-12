@@ -25,17 +25,28 @@ function apiQuery(params: URLSearchParams): string {
   return query ? `?${query}` : "";
 }
 
-/** `?refresh=<seconds>` re-fetches periodically (min 10s). Off by default. */
-function refreshInterval(params: URLSearchParams): number | null {
-  const seconds = Number(params.get("refresh"));
-  return Number.isFinite(seconds) && seconds > 0 ? Math.max(seconds, MIN_REFRESH_SECONDS) * 1000 : null;
+export type RefreshOptions = {
+  /** Refresh used when the URL has no `?refresh=` (off when omitted). */
+  defaultRefreshSeconds?: number;
+  /** Lowest `?refresh=` accepted (10s when omitted). */
+  minRefreshSeconds?: number;
+};
+
+// Stable default so the fetch effect does not restart on every render.
+const NO_OPTIONS: RefreshOptions = {};
+
+/** `?refresh=<seconds>` re-fetches periodically (min 10s by default). Off by default. */
+function refreshInterval(params: URLSearchParams, options: RefreshOptions): number | null {
+  const raw = params.get("refresh");
+  const seconds = raw === null ? (options.defaultRefreshSeconds ?? 0) : Number(raw);
+  return Number.isFinite(seconds) && seconds > 0 ? Math.max(seconds, options.minRefreshSeconds ?? MIN_REFRESH_SECONDS) * 1000 : null;
 }
 
 /**
  * Fetches `/api/widgets/<endpoint>` with the widget's own query string (filters are forwarded, front only params removed).
  * `isValid` guards the shape of the response so a malformed payload becomes an error state instead of a render crash.
  */
-export function useWidgetData<T>(endpoint: string, isValid: (body: unknown) => body is T): WidgetState<T> {
+export function useWidgetData<T>(endpoint: string, isValid: (body: unknown) => body is T, options: RefreshOptions = NO_OPTIONS): WidgetState<T> {
   const [state, setState] = useState<WidgetState<T>>({ status: "loading" });
 
   useEffect(() => {
@@ -64,14 +75,14 @@ export function useWidgetData<T>(endpoint: string, isValid: (body: unknown) => b
     };
 
     void load();
-    const every = refreshInterval(params);
+    const every = refreshInterval(params, options);
     const interval = every ? setInterval(() => void load(), every) : undefined;
     return () => {
       cancelled = true;
       controller?.abort();
       if (interval) clearInterval(interval);
     };
-  }, [endpoint, isValid]);
+  }, [endpoint, isValid, options]);
 
   return state;
 }

@@ -1,0 +1,27 @@
+/* Sizes use container width units so the strip scales with the browser source. */
+.veto { --veto-gold: #e4ae22; container-type: inline-size; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; height: 100%; }
+.veto-maps { display: flex; margin: 0; padding: 0; list-style: none; }
+.veto-col { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.veto-col-header { display: flex; align-items: center; justify-content: center; height: 4.6cqw; padding: 0 0.4cqw; background: #0d0f12; color: var(--veto-gold); font-size: 1.2cqw; font-weight: 700; line-height: 1.2; text-align: center; text-transform: uppercase; }
+.veto-col-body { position: relative; display: flex; align-items: center; justify-content: center; height: 12.6cqw; overflow: hidden; background: #1b1d22; }
+.veto-map-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.veto-map-name { position: relative; font-size: 2.1cqw; font-weight: 800; letter-spacing: 0.03em; text-transform: uppercase; text-shadow: 0 0.1cqw 0.5cqw rgba(0, 0, 0, 0.7); }
+.veto-map-wait { position: relative; font-size: 2.4cqw; font-weight: 800; color: var(--veto-gold); }
+.veto-col-ban .veto-map-image { filter: brightness(0.45) saturate(0.7); }
+.veto-col-ban .veto-map-name { opacity: 0.4; }
+.veto-ban-icon { position: absolute; width: 8.6cqw; color: var(--veto-gold); }
+.veto-col-side { display: flex; align-items: center; justify-content: center; height: 3.4cqw; padding: 0 0.4cqw; background: var(--veto-gold); color: #0d0f12; font-size: 1.2cqw; font-weight: 700; line-height: 1.2; text-align: center; text-transform: uppercase; }
+.veto-col-side-empty { background: #0d0f12; }
+.veto-col-current .veto-col-header { background: var(--veto-gold); color: #0d0f12; animation: veto-pulse 1.2s ease-in-out infinite; }
+.veto-col-empty .veto-col-body { opacity: 0.6; }
+
+.veto-footer { display: flex; align-items: center; justify-content: space-between; gap: 1cqw; height: 4.4cqw; padding: 0 1.6cqw; background: var(--veto-gold); color: #0d0f12; }
+.veto-team { display: flex; align-items: center; gap: 0.6cqw; min-width: 0; }
+.veto-team .team-logo { width: 2.8cqw; height: 2.8cqw; }
+.veto-team-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 1.5cqw; font-weight: 800; text-transform: uppercase; }
+.veto-center { display: flex; align-items: center; gap: 1cqw; }
+.veto-label { font-size: 1.3cqw; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.veto-timer { font-size: 2cqw; font-weight: 800; font-variant-numeric: tabular-nums; }
+.veto-timer-low { color: #8a1420; }
+
+@keyframes veto-pulse { 50% { opacity: 0.75; } }
