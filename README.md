@@ -36,23 +36,25 @@ Extra params handled by this front only:
 npm install
 cp .env.example .env     # VITE_GCS_API_URL = the GC Stats site
 npm run dev
-npm run build            # static output in dist/ (VITE_GCS_API_URL is required)
+npm run build            # static output in dist/
 npm test                 # unit tests (vitest)
 ```
 
-### Cloudflare Workers
+### Deploy (Docker + nginx)
+
+The `Dockerfile` builds the site and serves `dist/` with nginx (unprivileged, port 8080). Every path falls back to `index.html`, query strings are untouched.
+
+- `GCS_API_URL` (container environment, required): base URL of the GC Stats site. It is read at start and served as `/config.js`, so the same image runs in staging and production. `VITE_GCS_API_URL` is only the fallback of `npm run dev` and of a plain static host.
+- The `Image` workflow (push on `main`) tests, builds, scans (Trivy) and pushes `ghcr.io/osthelia/osthelia-widgets:<sha>`, then bumps the staging tag in the GitOps repository (secret `GITOPS_DEPLOY_KEY`).
 
 ```bash
-npx wrangler login       # once
-npm run deploy           # build + wrangler deploy
-npm run cf-preview       # local preview with the Workers runtime
+docker build -t osthelia-widgets .
+docker run --rm -p 8080:8080 -e GCS_API_URL=https://gc-stats.app osthelia-widgets
 ```
-
-`wrangler.jsonc` serves `dist/` as static assets with a single page app fallback. `VITE_GCS_API_URL` is read at build time, so set it (in `.env` or the build environment) before `npm run deploy`.
 
 ### Anywhere else
 
-Deploy `dist/` on any static host. Every path must fall back to `index.html` (`public/_redirects` does it for Netlify and Cloudflare Pages).
+Deploy `dist/` on any static host, with every path falling back to `index.html`, and set `VITE_GCS_API_URL` at build time.
 
 On the GC Stats side, set `NEXT_PUBLIC_WIDGETS_URL` to the URL where you host this front, so the builder generates links to it.
 

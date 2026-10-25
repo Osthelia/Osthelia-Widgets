@@ -10,5 +10,3 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
-        env:
-          VITE_GCS_API_URL: https://example.com

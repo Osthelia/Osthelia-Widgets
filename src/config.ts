@@ -1,12 +1,23 @@
 /**
  * Osthelia-Widgets — config
  *
- * Build time configuration (GC Stats API base URL).
+ * Configuration (GC Stats API base URL).
  *
  * @copyright Copyright (c) 2026 Osthelia — Widgets
  * @license   https://github.com/Osthelia/Widgets/blob/main/LICENSE.md Osthelia License v1.0
  * @link      https://github.com/Osthelia/Widgets
  */
 
-/** Base URL of the GC Stats site that exposes the widget data endpoints (required in production, checked at build time). */
-export const GCS_API_URL = (import.meta.env.VITE_GCS_API_URL ?? (import.meta.env.DEV ? "http://localhost:3000" : "")).replace(/\/$/, "");
+declare global {
+  interface Window {
+    /** Set by /config.js, which the nginx image generates from the GCS_API_URL environment variable. */
+    __WIDGETS_CONFIG__?: { gcsApiUrl?: string };
+  }
+}
+
+/** Base URL of the GC Stats site that exposes the widget data endpoints. Runtime value (/config.js) first, then VITE_GCS_API_URL at build time. */
+export const GCS_API_URL = (
+  window.__WIDGETS_CONFIG__?.gcsApiUrl ||
+  import.meta.env.VITE_GCS_API_URL ||
+  (import.meta.env.DEV ? "http://localhost:3000" : "")
+).replace(/\/$/, "");
