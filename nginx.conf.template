@@ -13,6 +13,14 @@ server {
         return 200 'window.__WIDGETS_CONFIG__ = { gcsApiUrl: "${GCS_API_URL}" };';
     }
 
+    # Supervision (UptimeRobot, exposé sans SSO en staging) : le process répond, rien d'autre à vérifier pour un site statique.
+    location = /api/readyz {
+        default_type text/plain;
+        add_header Cache-Control "no-store";
+        access_log off;
+        return 200 'ok';
+    }
+
     location = /index.html {
         add_header Cache-Control "no-cache";
     }
