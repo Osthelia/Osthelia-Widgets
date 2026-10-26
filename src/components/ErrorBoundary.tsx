@@ -4,7 +4,7 @@
  * Catches render errors so a widget shows a message instead of a blank page.
  *
  * @copyright Copyright (c) 2026 Osthelia — Widgets
- * @license   https://github.com/Osthelia/Widgets/blob/main/LICENSE.md Osthelia License v1.0
+ * @license   https://github.com/Osthelia/Widgets/blob/main/LICENSE.md MIT
  * @link      https://github.com/Osthelia/Widgets
  */
 

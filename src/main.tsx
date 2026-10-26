@@ -4,7 +4,7 @@
  * Entry point: picks the widget matching the current URL path and mounts it, or shows the widget index.
  *
  * @copyright Copyright (c) 2026 Osthelia — Widgets
- * @license   https://github.com/Osthelia/Widgets/blob/main/LICENSE.md Osthelia License v1.0
+ * @license   https://github.com/Osthelia/Widgets/blob/main/LICENSE.md MIT
  * @link      https://github.com/Osthelia/Widgets
  */
 

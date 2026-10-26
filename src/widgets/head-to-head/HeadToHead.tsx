@@ -4,7 +4,7 @@
  * Head-to-head widget: radar chart comparing two teams' win rates per map.
  *
  * @copyright Copyright (c) 2026 Osthelia — Widgets
- * @license   https://github.com/Osthelia/Widgets/blob/main/LICENSE.md Osthelia License v1.0
+ * @license   https://github.com/Osthelia/Widgets/blob/main/LICENSE.md MIT
  * @link      https://github.com/Osthelia/Widgets
  */
 

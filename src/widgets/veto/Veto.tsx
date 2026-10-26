@@ -5,7 +5,7 @@
  * they happen, in the style of the official VALORANT broadcast overlay.
  *
  * @copyright Copyright (c) 2026 Osthelia - Widgets
- * @license   https://github.com/Osthelia/Widgets/blob/main/LICENSE.md Osthelia License v1.0
+ * @license   https://github.com/Osthelia/Widgets/blob/main/LICENSE.md MIT
  * @link      https://github.com/Osthelia/Widgets
  */
 

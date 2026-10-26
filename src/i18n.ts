@@ -4,7 +4,7 @@
  * Translations of the widgets' texts and the `t()` helper, language picked from the `?lang=` param.
  *
  * @copyright Copyright (c) 2026 Osthelia — Widgets
- * @license   https://github.com/Osthelia/Widgets/blob/main/LICENSE.md Osthelia License v1.0
+ * @license   https://github.com/Osthelia/Widgets/blob/main/LICENSE.md MIT
  * @link      https://github.com/Osthelia/Widgets
  */
 
