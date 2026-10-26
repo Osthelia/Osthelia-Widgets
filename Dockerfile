@@ -9,8 +9,9 @@ COPY . .
 RUN npm run build
 
 # Unprivileged image: runs as `nginx` (uid 101) and listens on 8080, so the pod can run non-root.
-FROM nginxinc/nginx-unprivileged:1.30-alpine3.24
+FROM nginxinc/nginx-unprivileged:1.30-alpine3.24 AS runtime
 
+# CI builds this stage with no-cache-filters so the upgrade below isn't served from a stale layer cache.
 USER root
 RUN apk upgrade --no-cache
 USER 101
